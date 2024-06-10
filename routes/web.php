@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     // Dashboards
-    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard.index');
+    Route::get('dashboard', [HomeController::class, 'ecommerceDashboard'])->name('dashboard.index');
     // Locale
     Route::get('setlocale/{locale}', SetLocaleController::class)->name('setlocale');
 
