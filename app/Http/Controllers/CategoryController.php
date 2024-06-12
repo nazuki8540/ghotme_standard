@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,19 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $breadcrumbsItems = [
+            [
+                'name' => 'Categorias',
+                'url' => route('category.index'),
+                'active' => true
+            ],
+        ];
+
+        $categories = Category::paginate(10);
+
+        return view('category.index',[
+            'breadcrumbItems' => $breadcrumbsItems,
+            'pageTitle' => 'Categorias'],compact('categories')) ;
     }
 
     /**

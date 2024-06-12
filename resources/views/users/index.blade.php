@@ -46,7 +46,7 @@
                                 <thead class="bg-slate-200 dark:bg-slate-700">
                                     <tr>
                                         <th scope="col" class="table-th ">
-                                            {{ __('Sl No') }}
+                                            {{ __('#') }}
                                         </th>
                                         <th scope="col" class="table-th ">
                                             {{ __('Name') }}
@@ -69,7 +69,7 @@
                                     @forelse ($users as $user)
                                     <tr>
                                         <td class="table-td">
-                                            # {{ $user->id }}
+                                             {{ $user->id }}
                                         </td>
                                         <td class="table-td">
                                             <div class="flex items-center">

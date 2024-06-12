@@ -15,8 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Eletrônicos']);
-        Category::create(['name' => 'Roupas']);
-        // ... adicione mais categorias
+        Category::factory()->count(10)->create();
+
     }
 }

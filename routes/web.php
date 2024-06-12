@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppsController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\DatabaseBackupController;
 use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ProductController;
+
 
 
 require __DIR__ . '/auth.php';
@@ -51,6 +53,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('usuarios', [UsuariosController::class, 'index'])->name('usuarios');
     //Produtos
     Route::resource('products', ProductController::class);
+    //Categorias
+    Route::resource('category', CategoryController::class);
    
 });
 

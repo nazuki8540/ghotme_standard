@@ -47,6 +47,14 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('category.index') }}" class="navItem {{ (request()->is('category*')) ? 'active' : '' }}">
+                    <span class="flex items-center">
+                        <iconify-icon class=" nav-icon" icon="ion:pricetag-outline"></iconify-icon>
+                        <span>{{ __('Categories') }}</span>
+                    </span>
+                </a>
+            </li>
             <!-- Settings -->
             <li>
                 <a href="{{ route('general-settings.show') }}" class="navItem {{ (request()->is('general-settings*')) || (request()->is('roles*')) || (request()->is('profiles*')) || (request()->is('permissions*')) ? 'active' : '' }}">

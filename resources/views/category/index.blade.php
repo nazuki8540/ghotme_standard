@@ -45,58 +45,40 @@
                                                 <th scope="col" class="table-th">
                                                     {{ __('Name') }}
                                                 </th>
-                                                <th scope="col" class="table-th">
-                                                    {{ __('Description') }}
-                                                </th>
-                                                <th scope="col" class="table-th">
-                                                    {{ __('Price') }}
-                                                </th>
-                                                <th scope="col" class="table-th">
-                                                    {{ __('Quantity') }}
-                                                </th>
                                                 <th scope="col" class="table-th w-20">
                                                     {{ __('Action') }}
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
-                                            @forelse ($products as $product)
+                                            @forelse ($categories as $category)
                                             <tr>
                                                 <td class="table-td">
                                                     {{ $loop->iteration }}
                                                 </td>
                                                 <td class="table-td">
-                                                    {{ $product->name }}
-                                                </td>
-                                                <td class="table-td">
-                                                    {{ $product->description }}
-                                                </td>
-                                                <td class="table-td">
-                                                    {{ $product->price }}
-                                                </td>
-                                                <td class="table-td">
-                                                    {{ $product->quantity }}
+                                                    {{ $category->name }}
                                                 </td>
                                                 <td class="table-td">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
                                                         {{-- View --}}
                                                         @can('product show')
-                                                            <a class="action-btn" href="{{ route('products.show', $product) }}">
+                                                            <a class="action-btn" href="{{ route('products.show', $category) }}">
                                                                 <iconify-icon icon="heroicons:eye"></iconify-icon>
                                                             </a>
                                                         @endcan
                                                         {{-- Edit --}}
                                                         @can('product update')
-                                                            <a class="action-btn" href="{{ route('products.edit', ['product' => $product]) }}">
+                                                            <a class="action-btn" href="{{ route('products.edit', ['product' => $category]) }}">
                                                                 <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                             </a>
                                                         @endcan
                                                         {{-- Delete --}}
                                                         @can('product delete')
-                                                            <form id="deleteForm{{ $product->id }}" method="POST" action="{{ route('products.destroy', $product) }}">
+                                                            <form id="deleteForm{{ $category->id }}" method="POST" action="{{ route('products.destroy', $category) }}">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <a class="action-btn cursor-pointer" onclick="sweetAlertDelete(event, 'deleteForm{{ $product->id }}')" type="submit">
+                                                                <a class="action-btn cursor-pointer" onclick="sweetAlertDelete(event, 'deleteForm{{ $category->id }}')" type="submit">
                                                                     <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                                 </a>
                                                             </form>
@@ -114,13 +96,12 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    <x-table-footer :per-page-route-name="'products.index'" :data="$products" />
+                                    <x-table-footer :per-page-route-name="'products.index'" :data="$categories" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        
             </div>
         
             @push('scripts')
@@ -129,11 +110,11 @@
                     event.preventDefault();
                     let form = document.getElementById(formId);
                     Swal.fire({
-                        title: '@lang('Are you sure?')',
+                        title: '@lang('Tem certeza que deseja apagar?')',
                         icon: 'question',
                         showDenyButton: true,
                         confirmButtonText: '@lang('Delete')',
-                        denyButtonText: '@lang('Cancel')',
+                        denyButtonText: '@lang('Cancelar')',
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();
